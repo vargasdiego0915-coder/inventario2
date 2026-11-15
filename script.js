@@ -31,6 +31,12 @@ const productos = [
 
 const cuerpoTabla = document.getElementById("cuerpo-tabla");
 
+const resumen = document.getElementById("resumen");
+
+let totalAgotados = 0;
+let totalBajoStock = 0;
+let unidadesApedir = 0;
+let valorInventario = 0;
 
 
 for (let i = 0; i < productos.length; i++) {
@@ -94,17 +100,41 @@ for (let i = 0; i < productos.length; i++) {
         tdEstado.textContent = "AGOTADO - pedir " + faltan;
         tdEstado.style.color = "#dc3545";
         tdEstado.style.fontWeight = "bold";
+        totalAgotados++;
+        unidadesApedir += faltan;
 
     } else if (producto.cantidad < producto.minimo) {
         fila.classList.add("bajo-stock");
         const faltan = producto.minimo - producto.cantidad;
         tdEstado.textContent = "Bajo stock - pedir " + faltan;
+        totalBajoStock++;
+        unidadesApedir += faltan;
 
     } else {
         fila.classList.add("disponible");
         tdEstado.textContent = "OK";
     }
 
-    fila.appendChild(tdEstado);
+    valorInventario += sudtotal;
 
+    fila.appendChild(tdEstado);
 }
+
+const pAgotados = document.createElement("p");
+pAgotados.textContent = "Produtos agotados: " + totalAgotados;
+
+const pBajo = document.createElement("p");
+pBajo.textContent = "Productos con bajos stock: " + totalBajoStock;
+
+const pPedir = document.createElement("p");
+pPedir.textContent = "Unidades a pedir: " + unidadesApedir;
+
+const pValor = document.createElement("p");
+pValor.textContent = "Valor total del inventario: $" + valorInventario.toLocaleString("es-CO");
+pValor.style.fontWeight = "bold";
+
+resumen.appendChild(pAgotados);
+resumen.appendChild(pBajo);
+resumen.appendChild(pPedir);
+resumen.appendChild(pValor);
+
