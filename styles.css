@@ -47,3 +47,39 @@ font-size: 13px;
     background-color: #e9ecef;
     border-radius: 8px;
 }
+
+.destacado{
+    outline: 3px solid #0d6efd;
+}
+
+.btn {
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-menos {
+    background-color: #f2a93b;
+}
+
+.btn-mas {
+    background-color: #4caf50;
+}
+
+.btn:disabled {
+    background-color: #851818;
+    cursor: not-allowed;
+}
+
+.numero {
+    display: inline-block;
+    min-width: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
